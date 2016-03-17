@@ -43,7 +43,7 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 	
 	@Override
 	public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest request) {
-		// TODO MongoDB dashboard
+		// make sure we haven't provisioned this before (check admin DB)
 		ServiceInstance instance = repository.findOne(request.getServiceInstanceId());
 		if (instance != null) {
 			throw new ServiceInstanceExistsException(request.getServiceInstanceId(), request.getServiceDefinitionId());
@@ -61,7 +61,7 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 			throw new ServiceBrokerException("Failed to create new DB instance: " + instance.getServiceInstanceId());
 		}
 		repository.save(instance);
-
+                //save to admin DB for record keeping
 		return new CreateServiceInstanceResponse();
 	}
 
