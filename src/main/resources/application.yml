@@ -1,3 +1,7 @@
+security:
+  user:
+    name: pivotal
+    password: keepitsimple
 mongodb:
   host: localhost
   port: 27017
