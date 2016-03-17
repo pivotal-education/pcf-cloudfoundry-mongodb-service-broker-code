@@ -3,5 +3,5 @@ security:
     name: pivotal
     password: keepitsimple
 mongodb:
-  host: localhost
+  host: localhost # CHANGE ME
   port: 27017
