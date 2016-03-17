@@ -77,12 +77,14 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 	@Override
 	public DeleteServiceInstanceResponse deleteServiceInstance(DeleteServiceInstanceRequest request) throws MongoServiceException {
 		String instanceId = request.getServiceInstanceId();
+		//locate record in admin DB
 		ServiceInstance instance = repository.findOne(instanceId);
 		if (instance == null) {
 			throw new ServiceInstanceDoesNotExistException(instanceId);
 		}
-
+                // delete mongo database
 		mongo.deleteDatabase(instanceId);
+		//delete record from admin DB
 		repository.delete(instanceId);
 		return new DeleteServiceInstanceResponse();
 	}
