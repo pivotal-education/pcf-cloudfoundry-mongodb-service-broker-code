@@ -16,10 +16,10 @@ import com.mongodb.ServerAddress;
 @EnableMongoRepositories(basePackages = "org.springframework.cloud.servicebroker.mongodb.repository")
 public class MongoConfig extends AbstractMongoConfiguration {
 
-	  @Override
-	  protected String getDatabaseName() {
-	    return "broker";
-	  }
+	@Override
+	protected String getDatabaseName() {
+		return "mongodb-service-broker";
+	}
 
 	@Value("${mongodb.host:localhost}")
 	private String host;
@@ -36,5 +36,5 @@ public class MongoConfig extends AbstractMongoConfiguration {
 	public Mongo mongo() throws Exception {
 		return mongoClient();
 	}
-	
+
 }
