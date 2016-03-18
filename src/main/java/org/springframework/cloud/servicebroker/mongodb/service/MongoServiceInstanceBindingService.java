@@ -49,10 +49,8 @@ public class MongoServiceInstanceBindingService implements ServiceInstanceBindin
 
 		String database = serviceInstanceId;
 		String username = bindingId;
-		// TODO Password Generator
 		String password = "password";
 		
-		// TODO check if user already exists in the DB
 
 		mongo.createUser(database, username, password);
 		
