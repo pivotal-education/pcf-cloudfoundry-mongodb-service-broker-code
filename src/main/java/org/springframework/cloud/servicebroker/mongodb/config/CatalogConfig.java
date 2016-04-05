@@ -19,14 +19,14 @@ public class CatalogConfig {
 	public Catalog catalog() {
 		return new Catalog(Collections.singletonList(
 				new ServiceDefinition(
-						"mongodb-service-broker", //CHANGE ME - append initials (i.e. mongodb-service-broker-dr)
-						"Mongo DB", //CHANGE ME - append initials (i.e "Mongo DB (DR)")
+						getEnvOrDefault("SERVICE_ID","mongodb-service-broker"), //env variable
+						getEnvOrDefault("SERVICE_NAME","MongoDB"), //env variable
 						"A simple MongoDB service broker implementation",
 						true,
 						false,
 						Collections.singletonList(
-								new Plan("mongo-plan", //CHANGE ME - append initials (i.e mongo-plan-dr)
-										"Default Mongo Plan",
+								new Plan(getEnvOrDefault("PLAN_ID","mongo-plan"), //env variable
+										"standard",
 										"This is a default mongo plan.  All services are created equally.",
 										getPlanMetadata())),
 						Arrays.asList("mongodb", "document"),
@@ -71,6 +71,16 @@ public class CatalogConfig {
 		return Arrays.asList("Shared MongoDB server", 
 				"100 MB Storage (not enforced)", 
 				"40 concurrent connections (not enforced)");
+	}
+	
+	private String getEnvOrDefault(final String variable, final String defaultValue){
+		String value = System.getenv(variable);
+		if(value != null){
+			return value;
+		}
+		else{
+			return defaultValue;
+		}
 	}
 	
 }
