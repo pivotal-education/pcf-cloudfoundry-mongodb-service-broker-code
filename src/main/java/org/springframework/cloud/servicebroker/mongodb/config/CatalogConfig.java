@@ -28,7 +28,8 @@ public class CatalogConfig {
 								new Plan(getEnvOrDefault("PLAN_ID","mongo-plan"), //env variable
 										"standard",
 										"This is a default mongo plan.  All services are created equally.",
-										getPlanMetadata())),
+										getPlanMetadata(),
+										true)),
 						Arrays.asList("mongodb", "document"),
 						getServiceDefinitionMetadata(),
 						null,
@@ -50,22 +51,11 @@ public class CatalogConfig {
 	
 	private Map<String,Object> getPlanMetadata() {
 		Map<String,Object> planMetadata = new HashMap<>();
-		planMetadata.put("costs", getCosts());
 		planMetadata.put("bullets", getBullets());
 		return planMetadata;
 	}
 
-	private List<Map<String,Object>> getCosts() {
-		Map<String,Object> costsMap = new HashMap<>();
-		
-		Map<String,Object> amount = new HashMap<>();
-		amount.put("usd", 0.0);
-	
-		costsMap.put("amount", amount);
-		costsMap.put("unit", "MONTHLY");
-		
-		return Collections.singletonList(costsMap);
-	}
+
 	
 	private List<String> getBullets() {
 		return Arrays.asList("Shared MongoDB server", 
