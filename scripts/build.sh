@@ -7,6 +7,6 @@ if [ "$#" -ne 1 ]; then
     exit 1;
 fi
 
-./gradlew build
+./gradlew build -x test
 
 zip -r $1/cloudfoundry-mongodb-service-broker.zip *
