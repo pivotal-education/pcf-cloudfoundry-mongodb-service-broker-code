@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url "http://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
         mavenLocal()
     }
     dependencies {
@@ -23,7 +23,7 @@ targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
-    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "https://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
